@@ -1,0 +1,31 @@
+name: GitHub Actions Demo
+on:
+    push:
+      branches: main
+      paths-ignore: 
+        - '.github/**' 
+    pull_request:
+      branches: main
+    schedule:
+      - cron:  '15 6 * * SUN'
+    workflow_dispatch:
+      
+
+  #┌───────────── minute (0 - 59)
+# │ ┌───────────── hour (0 - 23)
+# │ │ ┌───────────── day of the month (1 - 31)
+# │ │ │ ┌───────────── month (1 - 12 or JAN-DEC)
+# │ │ │ │ ┌───────────── day of the week (0 - 6 or SUN-SAT)
+# │ │ │ │ │
+# │ │ │ │ │
+# │ │ │ │ │
+# * * * * *
+
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+    steps:
+    - run : |
+             echo "Output the name of the event that triggered the workflow : ${{ github.event_name }}"
+             echo " Output the name of the branch that the repository is currently referencing : ${{ github.ref }}"
+             echo " List all files in the repository ls ${{ github.workspace }}"
